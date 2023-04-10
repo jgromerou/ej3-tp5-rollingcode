@@ -24,10 +24,91 @@
     <title>Lista de Tareas</title>
   </head>
   <body>
-    <header></header>
+    <header class="container">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary m-3">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Inicio</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"
+                  >Lista de tareas</a
+                >
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Buscar tareas"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" type="submit">
+                Buscar
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-    <main></main>
-    <footer></footer>
+    <main>
+      <section class="container text-center">
+        <div class="row m-2">
+          <article id="seccionPadreJugador" class="col-12 col-sm-4 card p-1">
+            <div class="card-header">Ingresar nueva tarea:</div>
+            <div
+              id="contenedorNumeroJugador"
+              class="d-flex flex-column justify-content-center align-items-center"
+            >
+              <form>
+                <div class="mb-3">
+                  <!-- <label for="exampleFormControlTextarea1" class="form-label"
+                    >Example textarea</label
+                  > -->
+                  <textarea
+                    class="form-control m-1"
+                    id="exampleFormControlTextarea1"
+                    rows="10"
+                  ></textarea>
+                </div>
+
+                <button
+                  id="botonEleccionJugador"
+                  type="submit"
+                  class="btn btn-primary mb-2 p-2 fs-6"
+                >
+                  Ingresar
+                </button>
+              </form>
+            </div>
+          </article>
+          <article id="imagenPadre" class="col-12 col-sm-8 card p-1">
+            <div class="card-header">Lista de tareas:</div>
+            <div class="align-items-center">
+              <p class="pt-1 lead card-text fs-4 d-none">
+                Aqui va la tabla del listado de tareas
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="bg-dark text-center text-light py-3">
+      <p>&copy; Todos los derechos reservados</p>
+    </footer>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
