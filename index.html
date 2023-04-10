@@ -72,14 +72,14 @@
               id="contenedorNumeroJugador"
               class="d-flex flex-column justify-content-center align-items-center"
             >
-              <form>
-                <div class="mb-3">
+              <form id="formTextarea">
+                <div class="mb-3 p-1">
                   <!-- <label for="exampleFormControlTextarea1" class="form-label"
                     >Example textarea</label
                   > -->
                   <textarea
-                    class="form-control m-1"
-                    id="exampleFormControlTextarea1"
+                    class="form-control"
+                    id="tareaTextarea"
                     rows="10"
                   ></textarea>
                 </div>
@@ -96,10 +96,22 @@
           </article>
           <article id="imagenPadre" class="col-12 col-sm-8 card p-1">
             <div class="card-header">Lista de tareas:</div>
-            <div class="align-items-center">
-              <p class="pt-1 lead card-text fs-4 d-none">
-                Aqui va la tabla del listado de tareas
-              </p>
+            <div
+              class="d-flex flex-wrap justify-content-center"
+              id="container-cards"
+            >
+              <div class="table-responsive">
+                <table class="table">
+                  <thead id="cabeceraTabla" class="d-none">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Tarea</th>
+                      <th scope="col">Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody id="contenidoTabla"></tbody>
+                </table>
+              </div>
             </div>
           </article>
         </div>
