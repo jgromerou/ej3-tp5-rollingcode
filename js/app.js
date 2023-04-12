@@ -3,8 +3,10 @@ let cabeceraTabla = document.getElementById('cabeceraTabla');
 let contenidoTabla = document.getElementById('contenidoTabla');
 let cadenaTabla = [];
 
+let tablaTarea = document.getElementById('tablaTarea');
 //activadores de eventos
 formTextarea.addEventListener('submit', agregarTarea);
+tablaTarea.addEventListener('click', eliminarTarea);
 
 function agregarTarea(tarea) {
   tarea.preventDefault();
@@ -26,15 +28,15 @@ function agregarTarea(tarea) {
     let tdTarea = document.createElement('td');
     tdTarea.innerText = tarea.target[0].value;
 
-    //crear td boton eliminar
-    let tdBotonEliminar = document.createElement('td');
-    tdBotonEliminar.innerHTML = `<i class="bi bi-trash3-fill"></i>`;
+    //crear el boton eliminar Tarea
+    let botonEliminar = document.createElement('button');
+    botonEliminar.innerHTML = `<i class="bi bi-trash3-fill borrar-tarea" data-id=${tarea.target[0].value}></i>`;
 
     //Crear tr
     let tr = document.createElement('tr');
     tr.appendChild(th);
     tr.appendChild(tdTarea);
-    tr.appendChild(tdBotonEliminar);
+    tr.appendChild(botonEliminar);
 
     //se agrega el tr al contenido de la tabla
     contenidoTabla.append(tr);
@@ -45,4 +47,54 @@ function agregarTarea(tarea) {
     alert('Por favor, ingrese una cadena con la tarea');
     tarea.target[0].value = '';
   }
+}
+
+function eliminarTarea(tarea) {
+  console.log(tarea.target.classList.contains('borrar-tarea'));
+  if (tarea.target.classList.contains('borrar-tarea')) {
+    console.log(tarea.target.getAttribute('data-id'));
+    const nombreTarea = tarea.target.getAttribute('data-id');
+
+    //Elimina del arrego de articulosCarrito por el data-id
+    console.log('cadena Tabla antes', cadenaTabla);
+    cadenaTabla = cadenaTabla.filter((nombre) => nombre !== nombreTarea);
+
+    console.log(cadenaTabla);
+
+    //limpiar la tabla
+    limpiarTablaHTML();
+
+    //recorrer el array y mostrar el HTML
+    mostrarTablaHTML();
+  }
+}
+
+function limpiarTablaHTML() {
+  contenidoTabla.innerHTML = '';
+}
+
+function mostrarTablaHTML() {
+  cadenaTabla.forEach((nombre, index) => {
+    //Crear th
+    let th = document.createElement('th');
+    //th.scope = 'row';
+    th.innerText = index + 1;
+
+    //crear td tarea
+    let tdTarea = document.createElement('td');
+    tdTarea.innerText = nombre;
+
+    //crear el boton eliminar Tarea
+    let botonEliminar = document.createElement('button');
+    botonEliminar.innerHTML = `<i class="bi bi-trash3-fill borrar-tarea" data-id=${nombre}></i>`;
+
+    //Crear tr
+    let tr = document.createElement('tr');
+    tr.appendChild(th);
+    tr.appendChild(tdTarea);
+    tr.appendChild(botonEliminar);
+
+    //se agrega el tr al contenido de la tabla
+    contenidoTabla.append(tr);
+  });
 }
