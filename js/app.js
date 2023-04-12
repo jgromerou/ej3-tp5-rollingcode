@@ -50,16 +50,13 @@ function agregarTarea(tarea) {
 }
 
 function eliminarTarea(tarea) {
-  console.log(tarea.target.classList.contains('borrar-tarea'));
+  //verifica si hay una tarea en la tabla de Tareas
   if (tarea.target.classList.contains('borrar-tarea')) {
-    console.log(tarea.target.getAttribute('data-id'));
+    //tomo el id de la linea a borrar, en este caso es el elemento (nombre tarea) del array
     const nombreTarea = tarea.target.getAttribute('data-id');
 
     //Elimina del arrego de articulosCarrito por el data-id
-    console.log('cadena Tabla antes', cadenaTabla);
     cadenaTabla = cadenaTabla.filter((nombre) => nombre !== nombreTarea);
-
-    console.log(cadenaTabla);
 
     //limpiar la tabla
     limpiarTablaHTML();
