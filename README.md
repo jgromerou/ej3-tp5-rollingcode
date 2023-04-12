@@ -1,8 +1,8 @@
-# Ejercicio 1 del TP5: Práctica DOM y BOM
+# Ejercicio 3 del TP5: Práctica DOM y BOM
 
 ## Descripción
 
-Usar la Practica DOM y crear un script con toda la lógica necesaria para el Juego de los Números Magicos y maquetado del mismo.
+Usar la Practica DOM y crear un script con toda la lógica necesaria para crear un botón que al ser presionado agregue una tarea a una lista, y cada elemento ingresado en la lsita debe poder ser eliminado con un botón para tal fin y maquetado del mismo.
 
 ## Tecnologias / Herramientas 🛠
 
@@ -17,7 +17,7 @@ Usar la Practica DOM y crear un script con toda la lógica necesaria para el Jue
 En una terminal usar el siguiente comando
 
 ```
-git clone https://github.com/jgromerou/ej1-tp5-rollingcode.git
+git clone https://github.com/jgromerou/ej3-tp5-rollingcode.git
 ```
 
 y luego hacer click en el archivo index.html.
@@ -25,7 +25,7 @@ Es necesario contar con acceso a internet.
 
 ## Link para probar el Juego:
 
-[Netlify](https://numeros-magicos-rolling-romerouro.netlify.app/)
+[Netlify](https://ej3-tp5-rollingcode-romerouro.netlify.app/)
 
 ## Autor
 
