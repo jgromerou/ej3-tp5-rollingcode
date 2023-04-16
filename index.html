@@ -74,6 +74,8 @@
                   id="botonEleccionJugador"
                   type="submit"
                   class="btn btn-primary mb-2 p-2 fs-6"
+                  data-bs-toggle="modal"
+                  data-bs-target="#myModal"
                 >
                   Ingresar
                 </button>
@@ -103,6 +105,48 @@
         </div>
       </section>
     </main>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="myModal"
+      tabindex="-1"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="myModalLabel">
+              Alerta del Sistema
+            </h1>
+            <button
+              id="botonCloseModal"
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div
+            id="modal-body"
+            class="modal-body alert alert-primary"
+            role="alert"
+          >
+            efsfe
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Aceptar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <footer class="bg-dark text-center text-light py-3">
       <p>&copy; Todos los derechos reservados</p>
