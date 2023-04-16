@@ -69,7 +69,6 @@ function eliminarTarea(tarea) {
     let modalBody = document.getElementById('modal-body');
     modalBody.innerHTML = 'Se borró correctamente la tarea';
     modalBody.className = 'bg-info text-white';
-    console.log('estoy aqui 2');
 
     //limpiar la tabla
     limpiarTablaHTML();
