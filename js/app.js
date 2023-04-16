@@ -21,7 +21,6 @@ function agregarTarea(tarea) {
 
     //Crear th
     let th = document.createElement('th');
-    //th.scope = 'row';
     th.innerText = cadenaTabla.length;
 
     //crear td tarea
@@ -31,6 +30,8 @@ function agregarTarea(tarea) {
     //crear el boton eliminar Tarea
     let botonEliminar = document.createElement('button');
     botonEliminar.innerHTML = `<i class="bi bi-trash3-fill borrar-tarea" data-id=${tarea.target[0].value}></i>`;
+    botonEliminar.setAttribute('data-bs-toggle', 'modal');
+    botonEliminar.setAttribute('data-bs-target', '#myModal');
 
     //Crear tr
     let tr = document.createElement('tr');
@@ -43,8 +44,14 @@ function agregarTarea(tarea) {
 
     //Reset el textarea
     tarea.target[0].value = '';
+
+    let modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = 'Se agregó correctamente la tarea';
+    modalBody.className = 'bg-success text-white';
   } else {
-    alert('Por favor, ingrese una cadena con la tarea');
+    let modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = 'Por favor, ingrese una cadena con la tarea';
+    modalBody.className = 'bg-danger text-white';
     tarea.target[0].value = '';
   }
 }
@@ -57,6 +64,11 @@ function eliminarTarea(tarea) {
 
     //Elimina del arrego de articulosCarrito por el data-id
     cadenaTabla = cadenaTabla.filter((nombre) => nombre !== nombreTarea);
+
+    //Mostrar alerta de tarea eliminada
+    let modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = 'Se borró correctamente la tarea';
+    modalBody.className = 'bg-info text-white';
 
     //limpiar la tabla
     limpiarTablaHTML();
@@ -84,6 +96,8 @@ function mostrarTablaHTML() {
     //crear el boton eliminar Tarea
     let botonEliminar = document.createElement('button');
     botonEliminar.innerHTML = `<i class="bi bi-trash3-fill borrar-tarea" data-id=${nombre}></i>`;
+    botonEliminar.setAttribute('data-bs-toggle', 'modal');
+    botonEliminar.setAttribute('data-bs-target', '#myModal');
 
     //Crear tr
     let tr = document.createElement('tr');
@@ -95,3 +109,19 @@ function mostrarTablaHTML() {
     contenidoTabla.append(tr);
   });
 }
+
+//Focus en el botón Close Modal
+let myModal = document.getElementById('myModal');
+let botonCloseModal = document.getElementById('botonCloseModal');
+//cuando se abre el modal
+myModal.addEventListener('shown.bs.modal', function () {
+  botonCloseModal.focus();
+});
+
+//Poner focus en el text area cuando se cierra el Modal.
+let tareaTextarea = document.getElementById('tareaTextarea');
+document.getElementById('myModal').addEventListener('hidden.bs.modal', () => {
+  setTimeout(() => {
+    tareaTextarea.focus();
+  }, 2);
+});
