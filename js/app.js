@@ -4,6 +4,7 @@ let contenidoTabla = document.getElementById('contenidoTabla');
 let cadenaTabla = [];
 
 let tablaTarea = document.getElementById('tablaTarea');
+
 //activadores de eventos
 formTextarea.addEventListener('submit', agregarTarea);
 tablaTarea.addEventListener('click', eliminarTarea);
@@ -29,12 +30,11 @@ function agregarTarea(tarea) {
 
     //crear el boton eliminar Tarea
     let botonEliminar = document.createElement('button');
-
+    botonEliminar.setAttribute('data-bs-toggle', 'modal');
+    botonEliminar.setAttribute('data-bs-target', '#myModal');
     botonEliminar.innerHTML = `<i class="bi bi-trash3-fill borrar-tarea" data-id="${tarea.target[0].value
       .replace(/\s+/g, '')
       .trim()}"></i>`;
-    botonEliminar.setAttribute('data-bs-toggle', 'modal');
-    botonEliminar.setAttribute('data-bs-target', '#myModal');
 
     //Crear tr
     let tr = document.createElement('tr');
@@ -45,16 +45,15 @@ function agregarTarea(tarea) {
     //se agrega el tr al contenido de la tabla
     contenidoTabla.append(tr);
 
+    //bandera para mostrar modal que se agregó correctamente la tarea
+    agregarEliminarModal(true);
+
     //Reset el textarea
     tarea.target[0].value = '';
-
-    let modalBody = document.getElementById('modal-body');
-    modalBody.innerHTML = 'Se agregó correctamente la tarea';
-    modalBody.className = 'bg-success text-white';
   } else {
     let modalBody = document.getElementById('modal-body');
     modalBody.innerHTML = 'Por favor, ingrese una cadena con la tarea';
-    modalBody.className = 'bg-danger text-white';
+    modalBody.className = 'bg-danger text-white p-2 m-1';
     tarea.target[0].value = '';
   }
 }
@@ -70,10 +69,8 @@ function eliminarTarea(tarea) {
       (nombre) => nombre.replace(/\s+/g, '').trim() !== nombreTarea
     );
 
-    //Mostrar alerta de tarea eliminada
-    let modalBody = document.getElementById('modal-body');
-    modalBody.innerHTML = 'Se borró correctamente la tarea';
-    modalBody.className = 'bg-info text-white';
+    //Mostrar alerta de tarea eliminada con una banderaModal en false
+    agregarEliminarModal(false);
 
     //limpiar la tabla
     limpiarTablaHTML();
@@ -88,33 +85,37 @@ function limpiarTablaHTML() {
 }
 
 function mostrarTablaHTML() {
-  cadenaTabla.forEach((nombre, index) => {
-    //Crear th
-    let th = document.createElement('th');
-    //th.scope = 'row';
-    th.innerText = index + 1;
+  if (cadenaTabla.length > 0) {
+    cadenaTabla.forEach((nombre, index) => {
+      //Crear th
+      let th = document.createElement('th');
+      //th.scope = 'row';
+      th.innerText = index + 1;
 
-    //crear td tarea
-    let tdTarea = document.createElement('td');
-    tdTarea.innerText = nombre;
+      //crear td tarea
+      let tdTarea = document.createElement('td');
+      tdTarea.innerText = nombre;
 
-    //crear el boton eliminar Tarea
-    let botonEliminar = document.createElement('button');
-    botonEliminar.innerHTML = `<i class="bi bi-trash3-fill borrar-tarea" data-id=${nombre
-      .replace(/\s+/g, '')
-      .trim()}></i>`;
-    botonEliminar.setAttribute('data-bs-toggle', 'modal');
-    botonEliminar.setAttribute('data-bs-target', '#myModal');
+      //crear el boton eliminar Tarea
+      let botonEliminar = document.createElement('button');
+      botonEliminar.innerHTML = `<i class="bi bi-trash3-fill borrar-tarea" data-id=${nombre
+        .replace(/\s+/g, '')
+        .trim()}></i>`;
+      botonEliminar.setAttribute('data-bs-toggle', 'modal');
+      botonEliminar.setAttribute('data-bs-target', '#myModal');
 
-    //Crear tr
-    let tr = document.createElement('tr');
-    tr.appendChild(th);
-    tr.appendChild(tdTarea);
-    tr.appendChild(botonEliminar);
+      //Crear tr
+      let tr = document.createElement('tr');
+      tr.appendChild(th);
+      tr.appendChild(tdTarea);
+      tr.appendChild(botonEliminar);
 
-    //se agrega el tr al contenido de la tabla
-    contenidoTabla.append(tr);
-  });
+      //se agrega el tr al contenido de la tabla
+      contenidoTabla.append(tr);
+    });
+  } else {
+    cabeceraTabla.classList.add('d-none');
+  }
 }
 
 //Focus en el botón Close Modal
@@ -132,3 +133,16 @@ document.getElementById('myModal').addEventListener('hidden.bs.modal', () => {
     tareaTextarea.focus();
   }, 1);
 });
+
+//Modal agregar / eliminar
+function agregarEliminarModal(ban) {
+  if (ban) {
+    let modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = 'Se agregó correctamente la tarea';
+    modalBody.className = 'bg-success text-white p-2 m-1';
+  } else {
+    let modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = 'Se borró correctamente la tarea';
+    modalBody.className = 'bg-info text-white p-2 m-1';
+  }
+}
