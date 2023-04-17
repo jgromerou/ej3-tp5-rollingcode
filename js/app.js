@@ -19,9 +19,9 @@ function agregarTarea(tarea) {
     //se hace un push a la cadenaTabla
     cadenaTabla.push(tarea.target[0].value);
 
-    //Crear th
-    let th = document.createElement('th');
-    th.innerText = cadenaTabla.length;
+    //Crear td ID
+    let td = document.createElement('td');
+    td.innerText = cadenaTabla.length;
 
     //crear td tarea
     let tdTarea = document.createElement('td');
@@ -29,13 +29,16 @@ function agregarTarea(tarea) {
 
     //crear el boton eliminar Tarea
     let botonEliminar = document.createElement('button');
-    botonEliminar.innerHTML = `<i class="bi bi-trash3-fill borrar-tarea" data-id=${tarea.target[0].value}></i>`;
+
+    botonEliminar.innerHTML = `<i class="bi bi-trash3-fill borrar-tarea" data-id="${tarea.target[0].value
+      .replace(/\s+/g, '')
+      .trim()}"></i>`;
     botonEliminar.setAttribute('data-bs-toggle', 'modal');
     botonEliminar.setAttribute('data-bs-target', '#myModal');
 
     //Crear tr
     let tr = document.createElement('tr');
-    tr.appendChild(th);
+    tr.appendChild(td);
     tr.appendChild(tdTarea);
     tr.appendChild(botonEliminar);
 
@@ -63,7 +66,9 @@ function eliminarTarea(tarea) {
     const nombreTarea = tarea.target.getAttribute('data-id');
 
     //Elimina del arrego de articulosCarrito por el data-id
-    cadenaTabla = cadenaTabla.filter((nombre) => nombre !== nombreTarea);
+    cadenaTabla = cadenaTabla.filter(
+      (nombre) => nombre.replace(/\s+/g, '').trim() !== nombreTarea
+    );
 
     //Mostrar alerta de tarea eliminada
     let modalBody = document.getElementById('modal-body');
@@ -95,7 +100,9 @@ function mostrarTablaHTML() {
 
     //crear el boton eliminar Tarea
     let botonEliminar = document.createElement('button');
-    botonEliminar.innerHTML = `<i class="bi bi-trash3-fill borrar-tarea" data-id=${nombre}></i>`;
+    botonEliminar.innerHTML = `<i class="bi bi-trash3-fill borrar-tarea" data-id=${nombre
+      .replace(/\s+/g, '')
+      .trim()}></i>`;
     botonEliminar.setAttribute('data-bs-toggle', 'modal');
     botonEliminar.setAttribute('data-bs-target', '#myModal');
 
@@ -123,5 +130,5 @@ let tareaTextarea = document.getElementById('tareaTextarea');
 document.getElementById('myModal').addEventListener('hidden.bs.modal', () => {
   setTimeout(() => {
     tareaTextarea.focus();
-  }, 2);
+  }, 1);
 });
